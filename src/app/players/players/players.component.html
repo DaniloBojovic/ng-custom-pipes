@@ -1,0 +1,7 @@
+<div>
+    <ul class="players">
+        <li *ngFor="let player of players">
+            {{player.player}}, {{player.age}}, {{player.height | playerheight}}, {{player.weight | playerweight}}
+        </li>
+      </ul>
+</div>
