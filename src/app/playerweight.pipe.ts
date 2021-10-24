@@ -5,6 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PlayerWeightPipe implements PipeTransform {
   transform(weight: number, extension: string = 'kg') {
-    return (weight / 2.2046).toFixed(0) + ` ${extension}`;
+    return (weight / 2.2046).toFixed(2) + ` ${extension}`;
   }
 }
