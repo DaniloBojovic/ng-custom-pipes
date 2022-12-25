@@ -9,6 +9,9 @@ import { Player } from './player';
 })
 export class PlayerService {
   private playersUrl = 'api/players'; // URL to web api
+  players$ = this.http
+    .get<Player[]>(this.playersUrl)
+    .pipe(catchError((error) => of([])));
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -16,18 +19,18 @@ export class PlayerService {
 
   constructor(private http: HttpClient) {}
 
-  getPlayers(): Observable<Player[]> {
-    return this.http.get<Player[]>(this.playersUrl).pipe(
-      tap((_) => console.log('fetched players')),
-      catchError(this.handleError<Player[]>('getPlayers', []))
-    );
-  }
+  // getPlayers(): Observable<Player[]> {
+  //   return this.http.get<Player[]>(this.playersUrl).pipe(
+  //     tap((_) => console.log('fetched players')),
+  //     catchError(this.handleError<Player[]>('getPlayers', []))
+  //   );
+  // }
 
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      console.log(`${operation} failed: ${error.message}`);
-      return of(result as T);
-    };
-  }
+  // private handleError<T>(operation = 'operation', result?: T) {
+  //   return (error: any): Observable<T> => {
+  //     console.error(error);
+  //     console.log(`${operation} failed: ${error.message}`);
+  //     return of(result as T);
+  //   };
+  // }
 }

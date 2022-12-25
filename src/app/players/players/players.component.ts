@@ -7,18 +7,19 @@ import { PlayerService } from './../../player.service';
   templateUrl: './players.component.html',
   styleUrls: ['./players.component.css'],
 })
-export class PlayersComponent implements OnInit {
+export class PlayersComponent {
   players: Player[] = [];
+  players$ = this.playerService.players$;
 
   constructor(private playerService: PlayerService) {}
 
-  ngOnInit(): void {
-    this.getPlayers();
-  }
+  // ngOnInit(): void {
+  //   this.getPlayers();
+  // }
 
-  getPlayers(): void {
-    this.playerService
-      .getPlayers()
-      .subscribe((players) => (this.players = players));
-  }
+  // getPlayers(): void {
+  //   this.playerService
+  //     .getPlayers()
+  //     .subscribe((players) => (this.players = players));
+  // }
 }
